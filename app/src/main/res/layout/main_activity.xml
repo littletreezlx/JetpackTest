@@ -1,7 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity" />
+
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+        <variable
+            name="mainviewmodel"
+            type="com.example.jetpacktest.databinding.UserTest0" />
+        <variable
+            name="listener"
+            type="com.example.jetpacktest.MainClickListener" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+
+
+        <TextView
+            android:id="@+id/main_username_tv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@{mainviewmodel.userName, default = aaa}"
+            android:textSize="30sp"
+            android:gravity="center_horizontal"
+            />
+
+        <TextView
+            android:id="@+id/main_userage_tv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text='@{mainviewmodel.userAge + "岁", default = 0}'
+            android:textSize="30sp"
+            android:gravity="center_horizontal"
+            />
+
+
+
+        <Button
+            android:id="@+id/main_username_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="name"
+            android:textSize="30sp"
+            android:gravity="center_horizontal"
+            android:onClick="@{() -> mainviewmodel.onClick0()}"
+            />
+
+
+
+        <Button
+            android:id="@+id/main_userage_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="age"
+            android:textSize="30sp"
+            android:gravity="center_horizontal"
+            android:onClick="@{() -> mainviewmodel.onClick1()}"
+            />
+
+
+
+        <RelativeLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+</layout>
+
+
+
+
+
+
+
+
+
+
+
+

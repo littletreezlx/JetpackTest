@@ -1,4 +1,4 @@
-package com.example.jetpacktest;
+package com.example.jetpacktest.ui;
 
 import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.jetpacktest.R;
+import com.example.jetpacktest.viewmodel.MainViewModel;
 
 public class MainFragment extends Fragment {
 

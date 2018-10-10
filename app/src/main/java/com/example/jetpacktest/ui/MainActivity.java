@@ -1,45 +1,68 @@
-package com.example.jetpacktest;
+package com.example.jetpacktest.ui;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.example.jetpacktest.R;
+import com.example.jetpacktest.databinding.UserTest0;
+import com.example.jetpacktest.service.MainPresenter;
+import com.example.jetpacktest.viewmodel.MainViewModel;
+
+import java.nio.channels.NonWritableChannelException;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
-
-import android.os.Bundle;
-
-import com.example.jetpacktest.databinding.MainActivityBinding;
-import com.example.jetpacktest.databinding.UserTest0;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements LifecycleOwner {
 
 
+    private MainPresenter mainPresenter;
 
-    private UserTest0 user;
+
+    @BindView(R.id.username_tv)
+    TextView usernameTv;
+    @BindView(R.id.userage_tv)
+    TextView userageTv;
+    @BindView(R.id.username_btn)
+    Button usernameBtn;
+    @BindView(R.id.userage_btn)
+    Button userageBtn;
+    @BindView(R.id.container)
+    RelativeLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        ButterKnife.bind(this);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, MainFragment.newInstance())
                     .commitNow();
         }
 
-        user = new UserTest0();
-        user.setUserName("A");
 
-        MainActivityBinding mainActivityBinding = DataBindingUtil.setContentView(this, R.layout.main_activity);
-
+        MainPresenter mainPresenter = new MainPresenter(this);
 
 
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        mainActivityBinding.setMainviewmodel(mainViewModel);
-        mainActivityBinding.setLifecycleOwner(this);
+        mainViewModel.getUser().observe(this, user -> userageTv.setText(String.format("%d", user.getUserAge())));
+
+
+
+
+
+        userageBtn.setOnClickListener(view -> mainPresenter.onAddAgeClick());
 
     }
 
@@ -61,13 +84,6 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner {
     }
 
 
-    public UserTest0 getUser() {
-        return user;
-    }
-
-    public void setUser(UserTest0 user) {
-        this.user = user;
-    }
 }
 
 

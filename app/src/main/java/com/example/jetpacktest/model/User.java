@@ -1,26 +1,74 @@
 package com.example.jetpacktest.model;
 
+
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "users")
 public class User {
 
 
-    private String userName = "AAA";
+//    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
+    private int id;
 
-    private int userAge = 100;
+    @ColumnInfo(name = "name")
+    private String name = "AAA";
+
+    @ColumnInfo(name = "age")
+    private int age = 100;
+
+    @Embedded
+    private Address address;
 
 
-    public String getUserName() {
-        return userName;
+    @Ignore
+    private String ignore = "ignore";
+
+
+
+
+    public int getId() {
+        return id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getUserAge() {
-        return userAge;
+
+    public String getName() {
+        return name;
     }
 
-    public void setUserAge(int userAge) {
-        this.userAge = userAge;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String getIgnore() {
+        return ignore;
+    }
+
+    public void setIgnore(String ignore) {
+        this.ignore = ignore;
     }
 }

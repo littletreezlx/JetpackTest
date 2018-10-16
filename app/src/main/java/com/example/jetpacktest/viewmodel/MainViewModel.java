@@ -17,7 +17,7 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<User> user;
 
 
-    public LiveData<User> getUser() {
+    public MutableLiveData<User> getUser() {
         if (user == null) {
             user = new MutableLiveData<>();
             loaduser();
@@ -35,10 +35,14 @@ public class MainViewModel extends ViewModel {
     }
 
     public void onAddAgeClick(){
-        
-        int i = user.getValue().getUserAge();
 
-        user.getValue().setUserAge(++i);
+        User userValue = user.getValue();
+
+        int i = userValue.getAge();
+        userValue.setAge(++i);
+
+
+        user.setValue(userValue);
     }
 
 

@@ -14,12 +14,12 @@ public class MainPresenter {
     public MainPresenter(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
 
-        mainViewModel = ViewModelProviders.of(mainActivity).get(MainViewModel.class);
+//        mainViewModel = ViewModelProviders.of(mainActivity).get(MainViewModel.class);
     }
 
 
     public void onAddAgeClick(){
-        mainViewModel.onAddAgeClick();
+//        mainViewModel.onAddAgeClick();
     }
 
 

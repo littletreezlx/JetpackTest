@@ -9,4 +9,12 @@ public class Address {
 
     @ColumnInfo(name = "post_code")
     public int postCode;
+
+
+    public Address(String street, String state, String city, int postCode) {
+        this.street = street;
+        this.state = state;
+        this.city = city;
+        this.postCode = postCode;
+    }
 }

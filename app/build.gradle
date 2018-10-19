@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+apply plugin: "androidx.navigation.safeargs"
+
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -9,6 +12,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
+
     }
     buildTypes {
         release {
@@ -30,7 +41,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+//    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-alpha1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
@@ -91,9 +103,9 @@ dependencies {
     //    testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
     def room_version = "2.0.0"
 
-        implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
 
-        annotationProcessor "androidx.room:room-compiler:$room_version" // use kapt for Kotlin
+    annotationProcessor "androidx.room:room-compiler:$room_version" // use kapt for Kotlin
 
     //
 
@@ -129,7 +141,6 @@ dependencies {
     //    implementation "androidx.paging:paging-rxjava2:$paging_version"
     def nav_version = "1.0.0-alpha06"
     implementation "android.arch.navigation:navigation-fragment:$nav_version"
-
     // use -ktx for Kotlin
     implementation "android.arch.navigation:navigation-ui:$nav_version"
 
@@ -154,7 +165,7 @@ dependencies {
     //    // optional - Test helpers
 
     //    androidTestImplementation "android.arch.work:work-testing:$work_version"
+
+//    implementation 'com.idescout.sql:sqlscout-server:4.1'
+
 }
-
-
-

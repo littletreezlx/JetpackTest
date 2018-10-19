@@ -4,6 +4,7 @@ package com.example.jetpacktest.model;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -23,8 +24,23 @@ public interface UserDao {
             + "age LIKE :age LIMIT 1")
     User findByName(String name, String age);
 
+    @Query("SELECT name, city FROM users")
+    List<NameCity> loadNameCity();
+
+
+
+
+    @Query("SELECT * FROM users")
+    LiveData<List<User>> getAllLiveDate();
+
+
+
+
     @Insert
     void insertAll(User... users);
+
+    @Insert
+    void insert(User user);
 
     @Update
     void updateUser(User user);
@@ -33,15 +49,7 @@ public interface UserDao {
     @Delete
     void delete(User user);
 
-
-
-
-
-    @Query("SELECT name, city FROM users")
-     List<NameCity> loadNameCity();
-
-
-    @Query("SELECT * FROM users")
-    LiveData<List<User>> getAllLiveDate();
+    @Query("DELETE FROM users")
+    void deleteAll();
 
 }

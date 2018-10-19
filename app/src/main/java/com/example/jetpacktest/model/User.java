@@ -12,7 +12,7 @@ public class User {
 
 
 //    @PrimaryKey(autoGenerate = true)
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "name")
@@ -29,7 +29,11 @@ public class User {
     private String ignore = "ignore";
 
 
-
+    public User(String name, int age, Address address) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+    }
 
     public int getId() {
         return id;

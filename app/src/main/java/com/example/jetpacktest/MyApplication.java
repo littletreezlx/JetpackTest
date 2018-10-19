@@ -2,7 +2,7 @@ package com.example.jetpacktest;
 
 import android.app.Application;
 
-import com.example.jetpacktest.model.MyDataBase;
+import com.example.jetpacktest.room.MyDataBase;
 
 import androidx.room.Room;
 
@@ -18,8 +18,6 @@ public class MyApplication extends Application {
         super.onCreate();
 
         myDataBase = Room.databaseBuilder(this, MyDataBase.class, "myDataBase").build();
-
-
     }
 
     @Override
@@ -28,11 +26,11 @@ public class MyApplication extends Application {
     }
 
 
-    public MyDataBase getMyDataBase() {
-        return myDataBase;
-    }
-
-    public void setMyDataBase(MyDataBase myDataBase) {
-        this.myDataBase = myDataBase;
-    }
+//    public MyDataBase getMyDataBase() {
+//        return myDataBase;
+//    }
+//
+//    public void setMyDataBase(MyDataBase myDataBase) {
+//        this.myDataBase = myDataBase;
+//    }
 }

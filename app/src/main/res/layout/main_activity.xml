@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,20 +13,12 @@
 
 
     <TextView
-        android:id="@+id/username_tv"
+        android:id="@+id/users_tv"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textSize="30sp"
-        android:gravity="center_horizontal"
+        android:layout_height="200dp"
+        android:textSize="15sp"
         />
 
-    <TextView
-        android:id="@+id/userage_tv"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textSize="30sp"
-        android:gravity="center_horizontal"
-        />
 
 
 
@@ -51,13 +44,13 @@
 
 
 
-    <RelativeLayout
-        android:id="@+id/container"
+    <fragment
+        android:id="@+id/my_nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-
-    </RelativeLayout>
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/main_nav" />
 
 
 

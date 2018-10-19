@@ -9,6 +9,7 @@ import com.example.jetpacktest.R;
 import com.example.jetpacktest.model.User;
 import com.example.jetpacktest.service.MainPresenter;
 import com.example.jetpacktest.viewmodel.MainViewModel;
+import com.example.jetpacktest.viewmodel.MainViewModelFactory;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -27,16 +29,13 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner {
 
 
 
-    @BindView(R.id.username_tv)
-    TextView usernameTv;
-    @BindView(R.id.userage_tv)
-    TextView userageTv;
+    @BindView(R.id.users_tv)
+    TextView usersTv;
     @BindView(R.id.username_btn)
     Button usernameBtn;
     @BindView(R.id.userage_btn)
     Button userageBtn;
-    @BindView(R.id.container)
-    RelativeLayout container;
+
 
 
     @Override
@@ -44,22 +43,21 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         ButterKnife.bind(this);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow();
-        }
+//        if (savedInstanceState == null) {
+//            getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.container, MainFragment.newInstance())
+//                    .commitNow();
+//        }
+
+//        SqlScoutServer.create(this, getPackageName());
 
 
         MainPresenter mainPresenter = new MainPresenter(this);
 
-        MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        MainViewModel mainViewModel = ViewModelProviders.of(this, new MainViewModelFactory(this.getApplication(), "aaaaa")).get(MainViewModel.class);
+        mainViewModel.getUsers().observe(this, users -> usersTv.setText(users.toString()));
 
-
-        mainViewModel.getUser().setValue(new User());
-        mainViewModel.getUser().observe(this, user -> userageTv.setText(String.format("%d岁", user.getAge())));
-
-        userageBtn.setOnClickListener(view -> mainPresenter.onAddAgeClick());
+        userageBtn.setOnClickListener(view -> mainViewModel.onAddAgeClick());
 
     }
 
@@ -81,6 +79,12 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner {
     }
 
 
+
+//  equals  app:defaultNavHost="true"
+    @Override
+    public boolean onSupportNavigateUp() {
+        return Navigation.findNavController(this, R.id.main_fragment).navigateUp();
+    }
 }
 
 

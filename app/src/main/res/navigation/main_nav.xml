@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/main_fragment"
+
+    android:id= "@+id/main_nav_id"
+    >
+
+    <fragment
+        android:name="com.example.jetpacktest.ui.MainFragment"
+        android:id= "@+id/main_fragment"
+        android:label="aaa"
+        tools:layout="@layout/main_fragment"
+        >
+
+        <action
+            android:id="@+id/action_main_fragment_to_settings_activity"
+            app:destination="@id/settings_activity" />
+        <argument
+            android:name="name"
+            android:defaultValue="a"
+            app:argType="string" />
+        <argument
+            android:name="age"
+            android:defaultValue="10"
+            app:argType="integer" />
+        <action
+            android:id="@+id/blank_action"
+            app:destination="@id/blankFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.example.jetpacktest.ui.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" >
+        <argument
+            android:name="user"
+            android:defaultValue="vincent"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_blankFragment_to_blankFragment2"
+            app:destination="@id/blankFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/blankFragment2"
+        android:name="com.example.jetpacktest.ui.BlankFragment2"
+        android:label="fragment_blank2"
+        tools:layout="@layout/fragment_blank2">
+    </fragment>
+
+
+
+    <activity
+        android:id="@+id/settings_activity"
+        android:name="com.example.jetpacktest.ui.SettingActivity"
+        android:label="bbb"
+        tools:layout="@layout/setting_activity"
+        />
+
+
+
+
+
+
+    <action android:id="@+id/action_global_main_fragment" app:destination="@id/main_fragment" />
+
+
+</navigation>
